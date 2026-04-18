@@ -1,12 +1,17 @@
 class Solution {
-    int sum = 0;
+    public void inorder(TreeNode root, List<TreeNode> arr){
+        if(root==null) return;
+        inorder(root.left,arr);
+        arr.add(root);
+        inorder(root.right,arr);
+    }
     public TreeNode bstToGst(TreeNode root) {
-        if(root == null)
-            return null;
-        bstToGst(root.right);
-        sum += root.val;
-        root.val = sum;
-        bstToGst(root.left);
+        List<TreeNode> arr = new ArrayList<>();
+        inorder(root,arr);
+        int n = arr.size();
+        for(int i=n-2;i>=0;i--){
+            arr.get(i).val+=arr.get(i+1).val;
+        }
         return root;
     }
 }
