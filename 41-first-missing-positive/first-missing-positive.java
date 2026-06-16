@@ -9,7 +9,7 @@ class Solution {
         int i = 0;
         while (i<n){
             int corr =nums[i]-1;
-            if(nums[i] > 0 && nums[i] <= n && nums[i] != nums[corr]) {
+            if(nums[i]>0 && nums[i]<n && nums[i] != nums[corr]) {
                 swap(i, corr, nums);
             } else {
                 i++;
