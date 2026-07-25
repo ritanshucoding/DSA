@@ -1,20 +1,18 @@
 class Solution {
     public int reverseBits(int n) {
-        String binary = Integer.toBinaryString(n);
-        while (binary.length()<32){
-            binary ="0" +binary;
+        int i=0;
+        int j=31;
+        while(i<j){
+            int imsk = (1<<i), jmsk = (1<<j);
+            boolean ion = ((n&imsk) !=0);
+            boolean jon = ((n&jmsk) !=0);
+            if(ion!=jon){
+                n^=imsk; // ith bit flipped
+                n^=jmsk; // jth bit flipped
+            }
+            i++;
+            j--;
         }
-        char[] arr  = binary.toCharArray();
-        int a =0;
-        int b = arr.length-1;
-        while(a<b){
-            char temp = arr[a];
-            arr[a] = arr[b];
-            arr[b] = temp;
-            a++;
-            b--;
-        }
-        binary = new String(arr);
-        return (int) Long.parseLong(binary, 2);
+        return n;
     }
 }
