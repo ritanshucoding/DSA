@@ -4,18 +4,11 @@ class Solution {
             return "";
         }
         StringBuilder sb = new StringBuilder();
-        while(sum>=9){
-            sb.append('9');
-            sum-=9;
-            num--;
-        }
-        if(sum>0){
-            sb.append((char)('0'+sum));
-            num--;
-        }
-        while(num>0){
-            sb.append('0');
-            num--;
+        int rem = sum;
+        for(int i = 0; i<num; i++){
+            int d = Math.min(9,rem);
+            sb.append(d);
+            rem -= d;
         }
         return sb.toString();
     }
